@@ -1,0 +1,39 @@
+{
+  "rule_1_trailing_push": {
+    "id": "rule_1_trailing_push",
+    "name": "Fresh Attacking Substitution When Trailing Late",
+    "description": "Introduce offensive substitutes to push for equalizer when trailing late in match",
+    "triggers": {
+      "score_differential": {"operator": "<", "value": 0},
+      "match_minute": {"operator": ">", "value": 70},
+      "match_minute_max": {"operator": "<", "value": 85}
+    },
+    "action": "Introduce offensive substitutes",
+    "confidence_base": 0.85,
+    "rationale": "Trailing late in match - fresh attacking players needed to create chances"
+  },
+  "rule_2_protect_lead": {
+    "id": "rule_2_protect_lead",
+    "name": "Defensive Substitution When Leading Late",
+    "description": "Consider defensive substitution to protect lead late in match",
+    "triggers": {
+      "score_differential": {"operator": ">", "value": 0},
+      "match_minute": {"operator": ">", "value": 75}
+    },
+    "action": "Consider defensive substitution",
+    "confidence_base": 0.70,
+    "rationale": "Leading late - defensive stability is priority"
+  },
+  "rule_3_refresh_midgame": {
+    "id": "rule_3_refresh_midgame",
+    "name": "Optimal Time for Tactical Substitution",
+    "description": "Refresh key players before fatigue affects performance",
+    "triggers": {
+      "match_minute": {"operator": ">", "value": 60},
+      "match_minute_max": {"operator": "<", "value": 65}
+    },
+    "action": "Refresh key players with fresh legs",
+    "confidence_base": 0.65,
+    "rationale": "Optimal time for tactical substitutions (~65 mins)"
+  }
+}
