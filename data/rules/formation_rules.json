@@ -1,0 +1,63 @@
+{
+  "rule_1_attacking_formation": {
+    "id": "rule_1_attacking_formation",
+    "name": "Shift to Attacking Formation When Trailing",
+    "description": "Shift to more attacking formation when trailing to increase attacking threat",
+    "triggers": {
+      "score_differential": {"operator": "<", "value": 0},
+      "match_minute": {"operator": ">", "value": 60},
+      "match_minute_max": {"operator": "<", "value": 80}
+    },
+    "action": "Shift to more attacking formation (add extra attacker)",
+    "confidence_base": 0.80,
+    "rationale": "Trailing by goal - need to increase attacking threat",
+    "example_formations": {
+      "from": ["4-2-3-1", "4-3-3"],
+      "to": ["3-4-3", "4-1-4-1", "5-3-2"]
+    }
+  },
+  "rule_2_defensive_formation": {
+    "id": "rule_2_defensive_formation",
+    "name": "Defensive Formation When Protecting Early Lead",
+    "description": "Consolidate with defensive formation when protecting early lead",
+    "triggers": {
+      "score_differential": {"operator": ">", "value": 0},
+      "match_minute": {"operator": ">", "value": 45},
+      "match_minute_max": {"operator": "<", "value": 60}
+    },
+    "action": "Consolidate with defensive formation",
+    "confidence_base": 0.60,
+    "rationale": "Protecting early lead - defensive stability preferred",
+    "example_formations": {
+      "from": ["4-3-3", "3-5-2"],
+      "to": ["4-4-2", "5-4-1", "4-2-3-1"]
+    }
+  },
+  "rule_3_midfield_control": {
+    "id": "rule_3_midfield_control",
+    "name": "Add Midfielder for Possession Control",
+    "description": "Add midfielder to control possession in midfield when losing battles there",
+    "triggers": {
+      "possession_loss_zone": {"operator": "==", "value": "midfield"}
+    },
+    "action": "Add midfielder to control possession",
+    "confidence_base": 0.75,
+    "rationale": "Losing possession battles in midfield",
+    "example_formations": {
+      "from": ["4-3-3", "4-2-3-1"],
+      "to": ["4-4-2", "5-3-2"]
+    }
+  },
+  "rule_4_defensive_reinforcement": {
+    "id": "rule_4_defensive_reinforcement",
+    "name": "Defensive Reinforcement When Conceding Chances",
+    "description": "Shift to more defensive formation when conceding too many chances",
+    "triggers": {
+      "defensive_pressure": {"operator": ">", "value": 3},
+      "match_minute": {"operator": ">", "value": 30}
+    },
+    "action": "Reinforce defense with extra defender or DM",
+    "confidence_base": 0.70,
+    "rationale": "Opponent creating too many clear-cut chances"
+  }
+}
