@@ -1,0 +1,73 @@
+{
+  "rule_1_high_press_winning": {
+    "id": "rule_1_high_press_winning",
+    "name": "High Press When Winning",
+    "description": "Maintain high pressing intensity when winning to control the game",
+    "triggers": {
+      "score_differential": {"operator": ">", "value": 0},
+      "match_minute": {"operator": "<", "value": 60}
+    },
+    "action": "Maintain high pressing intensity",
+    "confidence_base": 0.70,
+    "rationale": "Winning position - press to prevent comeback",
+    "intensity": "high",
+    "press_line": "aggressive"
+  },
+  "rule_2_midfield_press": {
+    "id": "rule_2_midfield_press",
+    "name": "Increase Pressing in Midfield",
+    "description": "Increase pressing intensity in midfield when losing possession there frequently",
+    "triggers": {
+      "possession_loss_zone": {"operator": "==", "value": "midfield"},
+      "recent_possession_losses": {"operator": ">", "value": 3}
+    },
+    "action": "Increase pressing intensity in midfield",
+    "confidence_base": 0.75,
+    "rationale": "Multiple possession losses in midfield",
+    "intensity": "high",
+    "press_line": "middle"
+  },
+  "rule_3_counter_press": {
+    "id": "rule_3_counter_press",
+    "name": "Immediate Counter-Press After Loss",
+    "description": "Immediate pressing after losing possession to regain it quickly",
+    "triggers": {
+      "possession_just_lost": true,
+      "match_minute": {"operator": "<", "value": 85}
+    },
+    "action": "Initiate immediate counter-press",
+    "confidence_base": 0.80,
+    "rationale": "Best time to regain possession is immediately after loss",
+    "intensity": "very_high",
+    "duration_seconds": 10
+  },
+  "rule_4_defensive_press": {
+    "id": "rule_4_defensive_press",
+    "name": "Lower Press When Trailing Late",
+    "description": "Lower pressing intensity and drop defensive line when trailing late",
+    "triggers": {
+      "score_differential": {"operator": "<", "value": 0},
+      "match_minute": {"operator": ">", "value": 70}
+    },
+    "action": "Lower pressing intensity - defend deep and counter",
+    "confidence_base": 0.65,
+    "rationale": "Trailing late - counter-attacking approach needed",
+    "intensity": "low",
+    "press_line": "deep"
+  },
+  "rule_5_balanced_press": {
+    "id": "rule_5_balanced_press",
+    "name": "Balanced Pressing in Tight Matches",
+    "description": "Maintain balanced pressing in tied or close matches",
+    "triggers": {
+      "score_differential": {"operator": "==", "value": 0},
+      "match_minute": {"operator": ">", "value": 35},
+      "match_minute_max": {"operator": "<", "value": 75}
+    },
+    "action": "Maintain medium pressing intensity",
+    "confidence_base": 0.60,
+    "rationale": "Balanced approach in tight match",
+    "intensity": "medium",
+    "press_line": "middle"
+  }
+}
